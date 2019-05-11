@@ -1,6 +1,7 @@
 package br.edu.unifacear.jogodavelha.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,5 +28,15 @@ public class JogadaController {
 	@GetMapping("/jogada")
 	public List<Jogada> listar() {
 		return this.jogadaRep.findAll();
+	}
+	
+	@GetMapping("/jogada/obter")
+	public Optional<Jogada> obter(Integer id) {
+		return this.jogadaRep.findById(id);
+	}
+	
+	@PostMapping("/jogada/delete")
+	public void excluir(Jogada j) {
+		this.jogadaRep.deleteById(j.getId());
 	}
 }
